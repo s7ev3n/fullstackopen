@@ -1,35 +1,26 @@
 import React from 'react'
 
-const Hello = (props) => {
-  return (
-    <div>
-      <p>
-        Hello {props.name}, you are {props.age} years old
-      </p>
-    </div>
-  )
-}
-
-const Footer = () => {
-  return (
-    <div>
-      <a href="https://github.com/mluukkai">mluukkai</a>
-      greeting app created by <a href="https://github.com/mluukkai">mluukkai</a>
-    </div>
-  )
-}
-
 const Header = (props) => {
   return(
     <h1>{props.course}</h1>
   )
 }
 
-const Content = (props) => {
+const Part = (props) => {
   return (
     <p>
-    {props.partname} has {props.num_exer} exercises.
+      {props.name} has {props.num} exercises.
     </p>
+  )
+}
+
+const Content = (props) => {
+  return (
+    <div>
+      <Part name={props.name1} num={props.num1}/>
+      <Part name={props.name2} num={props.num2}/>
+      <Part name={props.name3} num={props.num3}/>
+    </div>
   )
 }
 
@@ -55,9 +46,7 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content partname={part1} num_exer={exercises1}/>
-      <Content partname={part2} num_exer={exercises2}/>
-      <Content partname={part3} num_exer={exercises3}/>
+      <Content name1={part1} name2={part2} name3={part3} num1={exercises1} num2={exercises2} num3={exercises3} />
       <Total exer1_num={exercises1} exer2_num={exercises2} exer3_num={exercises3}/>
     </div>
   )
