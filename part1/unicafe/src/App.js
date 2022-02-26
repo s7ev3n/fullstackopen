@@ -14,9 +14,13 @@ const Header = (props) => {
 
 const StatisticLine = ({text, value}) => {
   return (
-    <p>{text}: {value}</p>
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
   )
 }
+
 
 const Statistics = ({good, bad, neutral}) => {
   const all = good + bad + neutral
@@ -58,7 +62,9 @@ const App = () => {
       <Button handleClick={handleNeutralClick} text='neutral'/>
       <Button handleClick={handleBadClick} text='bad'/>
       <Header text='statistics'/>
-      <Statistics good={good} bad={bad} neutral={neutral} />
+      <table>
+        <Statistics good={good} bad={bad} neutral={neutral} />        
+      </table>
     </div>
   )
 }
