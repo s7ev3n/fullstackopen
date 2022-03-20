@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 const Show = ({person}) => {
   return (
@@ -44,12 +45,24 @@ const Filter = ({filterState, filterFunc, showArray}) => {
   )
 }
 
-const App = (props) => {
-  const [persons, setPersons] = useState(props.phoneBook) 
+const App = () => {
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
   const [personToShow, setPersonToShow] = useState([])
+
+  useEffect(() => {
+    console.log('effect')
+    const eventHandler = resopnse => {
+      console.log('promise fulfilled')
+      setPersons(resopnse.data)
+    }
+    axios
+      .get('http://localhost:3001/persons')
+      .then(eventHandler)
+  }, [])
+  console.log('render', persons.length, 'persons')
 
   const addContact = (event) => {
     event.preventDefault()
